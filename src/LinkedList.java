@@ -160,6 +160,54 @@ public class LinkedList {
         prev.next= prev.next.next;
         return;
     }
+    public Node findMid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    public boolean checkPalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+        //step 1- find mid
+        Node midNode = findMid(head);
+        //step 2 - reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+    public static boolean isCycle(){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
     public void Print(){
         if(head == null){
             System.out.println("LL is empty");
@@ -173,22 +221,29 @@ public class LinkedList {
         System.out.println("null");
     }
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(6);
-        ll.addLast(7);
-        ll.add(2,3);
-        ll.add(3,4);
-        ll.add(4,5);
+        head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+//        head.next.next.next = head;
+        System.out.println(isCycle());
+//        LinkedList ll = new LinkedList();
+//        ll.addFirst(2);
+//        ll.addFirst(1);
+//        ll.addLast(3);
+//        ll.addLast(1);
+//        ll.add(0,1);
+//        ll.add(1,2);
+//        ll.add(2,2);
+//        ll.add(3,1);
+//        System.out.println(ll.checkPalindrome());
 //        ll.removeFirst();
 //        ll.removeLast();
-        ll.Print();
+//        ll.Print();
 //        System.out.println(ll.itrSearch(5));
 //        System.out.println(ll.recSearch(7));
 //        ll.reverse();
 //        ll.Print();
-        ll.deleteNthfromEnd(3);
-        ll.Print();
+//        ll.deleteNthfromEnd(3);
+//        ll.Print();
     }
 }
