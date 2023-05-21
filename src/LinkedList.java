@@ -221,12 +221,18 @@ public class LinkedList {
         System.out.println("null");
     }
     public static void main(String[] args) {
-        head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = head;
-        System.out.println(isCycle());
-//        LinkedList ll = new LinkedList();
+        int a = 256;
+        for(int i = 0;i<= a; i++){
+            int b = a%10;
+            System.out.print(b);
+            a = a/10;
+        }
+//        head = new Node(1);
+//        head.next = new Node(2);
+//        head.next.next = new Node(3);
+//        head.next.next.next = head;
+//        System.out.println(isCycle());
+////        LinkedList ll = new LinkedList();
 //        ll.addFirst(2);
 //        ll.addFirst(1);
 //        ll.addLast(3);
